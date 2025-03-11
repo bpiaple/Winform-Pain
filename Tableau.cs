@@ -12,16 +12,16 @@ namespace TP1
             this.tableau = tableau;
         }
 
-        public void ModifierEpaisseur(float epaisseur)
+        public void ModifierEpaisseur(float epaisseurTrait)
         {
-            this.epaisseurTrait = epaisseur;
+            this.epaisseurTrait = epaisseurTrait;
         }
         
-        public void Dessiner(Graphics graphics)
+        public void Dessiner(Graphics tableau)
         {
-            foreach (FormeAbstraite forme in formes)
+            foreach (IForme forme in formes)
             {
-                forme.Dessiner(graphics);
+                forme.Dessiner(tableau);
             }
         }
 
@@ -36,40 +36,24 @@ namespace TP1
             tableau.Invalidate();
         }
 
-        public void EnregistrerDessin()
-        {
+        public void EnregistrerDessin() {
             SaveFileDialog fenetreEnregistrement = new()
             {
-                Filter = "Image PNG (*.png)|*.png|Image JPEG (*.jpg)|*.jpg|Tous les fichiers (*.*)|*.*",
+                Filter = "Fichier Texte (*.txt)|*.txt|Tous les fichiers (*.*)|*.*",
                 Title = "Enregistrer le dessin",
-                DefaultExt = "png"
+                DefaultExt = "txt"
             };
 
             if (fenetreEnregistrement.ShowDialog() == DialogResult.OK)
             {
                 try
                 {
-                    Bitmap imageEnregistree = new(tableau.Width, tableau.Height);
-
-                    using (Graphics g = Graphics.FromImage(imageEnregistree))
+                    using (StreamWriter ecrivain = new(fenetreEnregistrement.FileName))
                     {
-                        g.Clear(Color.White);
-
-                        foreach (FormeAbstraite forme in formes)
+                        foreach (IForme forme in formes)
                         {
-                            forme.Dessiner(g);
+                            forme.Ecrire(ecrivain);
                         }
-                    }
-
-                    string extension = Path.GetExtension(fenetreEnregistrement.FileName).ToLower();
-
-                    if (extension == ".jpg" || extension == ".jpeg")
-                    {
-                        imageEnregistree.Save(fenetreEnregistrement.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
-                    }
-                    else
-                    {
-                        imageEnregistree.Save(fenetreEnregistrement.FileName, System.Drawing.Imaging.ImageFormat.Png);
                     }
 
                     MessageBox.Show("Dessin enregistré avec succès !", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -77,6 +61,52 @@ namespace TP1
                 catch (Exception ex)
                 {
                     MessageBox.Show("Erreur lors de l'enregistrement : " + ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        public void OuvrirDessin() {
+            OpenFileDialog fenetreOuverture = new()
+            {
+                Filter = "Image Texte (*.txt)|*.txt|Tous les fichiers (*.*)|*.*",
+                Title = "Ouvrir un dessin"
+            };
+
+            if (fenetreOuverture.ShowDialog() == DialogResult.OK)
+            {
+                this.EffacerDessins();
+                using StreamReader reader = new(fenetreOuverture.FileName);
+                string ligne;
+                while ((ligne = reader.ReadLine()) != null)
+                {
+                    string[] elements = ligne.Split(' ');
+                    TypeForme typeForme = (TypeForme)Enum.Parse(typeof(TypeForme), elements[0]);
+                    int x = int.Parse(elements[1]);
+                    int y = int.Parse(elements[2]);
+                    int width = int.Parse(elements[3]);
+                    int height = int.Parse(elements[4]);
+                    Color couleur = Color.FromArgb(int.Parse(elements[5]));
+                    float epaisseur = float.Parse(elements[6]);
+
+                    IForme forme;
+
+                    switch (typeForme)
+                    {
+                        case TypeForme.Ligne:
+                            forme = new Ligne(new Pen(couleur, epaisseur), x, y, width, height);
+                            this.AjouterForme(forme);
+                            break;
+                        case TypeForme.Rectangle:
+                            forme = new Rectangle(new Pen(couleur, epaisseur), x, y, width, height);
+                            this.AjouterForme(forme);
+                            break;
+                        case TypeForme.Ellipse:
+                            forme = new Ellipse(new Pen(couleur, epaisseur), x, y, width, height);
+                            this.AjouterForme(forme);
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
         }

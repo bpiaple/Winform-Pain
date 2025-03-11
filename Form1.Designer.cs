@@ -47,10 +47,10 @@
             choixCouleur = new ToolStripButton();
             tableau = new PictureBox();
             menuClickDroit = new ContextMenuStrip(components);
-            couleurToolStripMenuItem = new ToolStripMenuItem();
-            augmenterTraiToolStripMenuItem = new ToolStripMenuItem();
-            diminuerTraitToolStripMenuItem = new ToolStripMenuItem();
-            effacerToutToolStripMenuItem = new ToolStripMenuItem();
+            couleurToolStripMenu = new ToolStripMenuItem();
+            augmenterTraiToolStripMenu = new ToolStripMenuItem();
+            diminuerTraitToolStripMenu = new ToolStripMenuItem();
+            effacerToutToolStripMenu = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             barreBas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)tableau).BeginInit();
@@ -79,13 +79,14 @@
             ouvrirToolStripMenuItem.Name = "ouvrirToolStripMenuItem";
             ouvrirToolStripMenuItem.Size = new Size(172, 26);
             ouvrirToolStripMenuItem.Text = "Ouvrir...";
+            ouvrirToolStripMenuItem.Click += Ouvrir;
             // 
             // enregistrerToolStripMenuItem
             // 
             enregistrerToolStripMenuItem.Name = "enregistrerToolStripMenuItem";
             enregistrerToolStripMenuItem.Size = new Size(172, 26);
             enregistrerToolStripMenuItem.Text = "Enregistrer...";
-            enregistrerToolStripMenuItem.Click += EnregistrerDessin;
+            enregistrerToolStripMenuItem.Click += Enregistrer;
             // 
             // outilsToolStripMenuItem
             // 
@@ -190,37 +191,37 @@
             // menuClickDroit
             // 
             menuClickDroit.ImageScalingSize = new Size(20, 20);
-            menuClickDroit.Items.AddRange(new ToolStripItem[] { couleurToolStripMenuItem, augmenterTraiToolStripMenuItem, diminuerTraitToolStripMenuItem, effacerToutToolStripMenuItem });
+            menuClickDroit.Items.AddRange(new ToolStripItem[] { couleurToolStripMenu, augmenterTraiToolStripMenu, diminuerTraitToolStripMenu, effacerToutToolStripMenu });
             menuClickDroit.Name = "contextMenuStrip1";
             menuClickDroit.Size = new Size(211, 128);
             // 
-            // couleurToolStripMenuItem
+            // couleurToolStripMenu
             // 
-            couleurToolStripMenuItem.Name = "couleurToolStripMenuItem";
-            couleurToolStripMenuItem.Size = new Size(210, 24);
-            couleurToolStripMenuItem.Text = "Couleur";
-            couleurToolStripMenuItem.Click += OuvrirPanelCouleur;
+            couleurToolStripMenu.Name = "couleurToolStripMenu";
+            couleurToolStripMenu.Size = new Size(210, 24);
+            couleurToolStripMenu.Text = "Couleur";
+            couleurToolStripMenu.Click += OuvrirPanelCouleur;
             // 
-            // augmenterTraiToolStripMenuItem
+            // augmenterTraiToolStripMenu
             // 
-            augmenterTraiToolStripMenuItem.Name = "augmenterTraiToolStripMenuItem";
-            augmenterTraiToolStripMenuItem.Size = new Size(210, 24);
-            augmenterTraiToolStripMenuItem.Text = "Augmenter Trait";
-            augmenterTraiToolStripMenuItem.Click += augmenterTraiToolStripMenuItem_Click;
+            augmenterTraiToolStripMenu.Name = "augmenterTraiToolStripMenu";
+            augmenterTraiToolStripMenu.Size = new Size(210, 24);
+            augmenterTraiToolStripMenu.Text = "Augmenter Trait";
+            augmenterTraiToolStripMenu.Click += AugmenterTraiToolStrip;
             // 
-            // diminuerTraitToolStripMenuItem
+            // diminuerTraitToolStripMenu
             // 
-            diminuerTraitToolStripMenuItem.Name = "diminuerTraitToolStripMenuItem";
-            diminuerTraitToolStripMenuItem.Size = new Size(210, 24);
-            diminuerTraitToolStripMenuItem.Text = "Diminuer Trait";
-            diminuerTraitToolStripMenuItem.Click += diminuerTraitToolStripMenuItem_Click;
+            diminuerTraitToolStripMenu.Name = "diminuerTraitToolStripMenu";
+            diminuerTraitToolStripMenu.Size = new Size(210, 24);
+            diminuerTraitToolStripMenu.Text = "Diminuer Trait";
+            diminuerTraitToolStripMenu.Click += DiminuerTraitToolStrip;
             // 
-            // effacerToutToolStripMenuItem
+            // effacerToutToolStripMenu
             // 
-            effacerToutToolStripMenuItem.Name = "effacerToutToolStripMenuItem";
-            effacerToutToolStripMenuItem.Size = new Size(210, 24);
-            effacerToutToolStripMenuItem.Text = "Effacer Tout";
-            effacerToutToolStripMenuItem.Click += effacerToutToolStripMenuItem_Click;
+            effacerToutToolStripMenu.Name = "effacerToutToolStripMenu";
+            effacerToutToolStripMenu.Size = new Size(210, 24);
+            effacerToutToolStripMenu.Text = "Effacer Tout";
+            effacerToutToolStripMenu.Click += EffacerToutToolStrip;
             // 
             // Form1
             // 
@@ -231,7 +232,7 @@
             Controls.Add(menuStrip1);
             Controls.Add(barreBas);
             Name = "Form1";
-            Text = "Form1";
+            Text = "New Pain 2025";
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             barreBas.ResumeLayout(false);
@@ -262,9 +263,9 @@
         private ToolStripLabel epaisseur;
         private ToolStripLabel espace;
         private ContextMenuStrip menuClickDroit;
-        private ToolStripMenuItem couleurToolStripMenuItem;
-        private ToolStripMenuItem augmenterTraiToolStripMenuItem;
-        private ToolStripMenuItem diminuerTraitToolStripMenuItem;
-        private ToolStripMenuItem effacerToutToolStripMenuItem;
+        private ToolStripMenuItem couleurToolStripMenu;
+        private ToolStripMenuItem augmenterTraiToolStripMenu;
+        private ToolStripMenuItem diminuerTraitToolStripMenu;
+        private ToolStripMenuItem effacerToutToolStripMenu;
     }
 }

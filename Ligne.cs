@@ -4,14 +4,21 @@ namespace TP1
     {
         private int x2;
         private int y2;
-        public Ligne(Pen pen, int x1, int y1, int x2, int y2) : base(pen, x1, y1, 0, 0)
+
+        public Ligne(Pen stylo, int x1, int y1, int x2, int y2) : base(stylo, x1, y1, 0, 0)
         {
             this.x2 = x2;
             this.y2 = y2;
         }
-        public override void Dessiner(Graphics graphics)
+
+        public override void Dessiner(Graphics tableau)
         {
-            graphics.DrawLine(stylo, x, y, x2, y2);
+            tableau.DrawLine(stylo, x, y, x2, y2);
+        }
+
+        public override void Ecrire(StreamWriter ecrivain) 
+        {
+            ecrivain.WriteLine($"{GetType().Name} {x} {y} {x2} {y2} {stylo.Color.ToArgb()} {stylo.Width}");
         }
     }
 }

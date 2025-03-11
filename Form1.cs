@@ -134,7 +134,7 @@ namespace TP1
             }
         }
 
-        private void EnregistrerDessin(object sender, EventArgs e)
+        private void Enregistrer(object sender, EventArgs e)
         {
             monTableau.EnregistrerDessin();
         }
@@ -157,13 +157,13 @@ namespace TP1
             outil.Text = "Ellipse";
         }
 
-        private void augmenterTraiToolStripMenuItem_Click(object sender, EventArgs e)
+        private void AugmenterTraiToolStrip(object sender, EventArgs e)
         {
             monTableau.epaisseurTrait++;
             epaisseur.Text = monTableau.epaisseurTrait.ToString();
         }
 
-        private void diminuerTraitToolStripMenuItem_Click(object sender, EventArgs e)
+        private void DiminuerTraitToolStrip(object sender, EventArgs e)
         {
             if (monTableau.epaisseurTrait > 1)
             {
@@ -172,9 +172,15 @@ namespace TP1
             }
         }
 
-        private void effacerToutToolStripMenuItem_Click(object sender, EventArgs e)
+        private void EffacerToutToolStrip(object sender, EventArgs e)
         {
             monTableau.EffacerDessins();
         }
+
+        private void Ouvrir(object sender, EventArgs e)
+        {
+            monTableau.OuvrirDessin();
+        }
+
     }
 }
