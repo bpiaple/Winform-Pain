@@ -7,7 +7,7 @@ namespace TP1
         }
         public override void Dessiner(Graphics tableau)
         {
-            tableau.DrawRectangle(stylo, x, y, width, height);
+            tableau.DrawRectangle(getStylo(), getX(), getY(), getWidth(), getHeight());
         }
     }
 }

@@ -3,6 +3,6 @@
     public interface IForme
     {
         void Dessiner(Graphics tableau);
-        void Ecrire(StreamWriter ecrivain);
+        void Enregistrer(IFluxEcriture fluxEcriture);
     }
 }

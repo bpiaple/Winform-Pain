@@ -7,7 +7,7 @@ namespace TP1
         }
         public override void Dessiner(Graphics tableau)
         {
-            tableau.DrawEllipse(stylo, x, y, width, height);
+            tableau.DrawEllipse(getStylo(), getX(), getY(), getWidth(), getHeight());
         }
     }
 }

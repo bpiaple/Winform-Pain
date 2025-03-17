@@ -48,13 +48,12 @@ namespace TP1
             {
                 try
                 {
-                    using (StreamWriter ecrivain = new(fenetreEnregistrement.FileName))
+                    var fluxEcriture = new FluxEcriture(fenetreEnregistrement.FileName);
+                    foreach (IForme forme in formes)
                     {
-                        foreach (IForme forme in formes)
-                        {
-                            forme.Ecrire(ecrivain);
-                        }
+                        forme.Enregistrer(fluxEcriture);
                     }
+                    fluxEcriture.FermerWriter();
 
                     MessageBox.Show("Dessin enregistré avec succès !", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }

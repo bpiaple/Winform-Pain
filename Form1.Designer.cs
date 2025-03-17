@@ -51,6 +51,7 @@
             augmenterTraiToolStripMenu = new ToolStripMenuItem();
             diminuerTraitToolStripMenu = new ToolStripMenuItem();
             effacerToutToolStripMenu = new ToolStripMenuItem();
+            Outil_nom = new ToolStripLabel();
             menuStrip1.SuspendLayout();
             barreBas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)tableau).BeginInit();
@@ -127,7 +128,7 @@
             // 
             barreBas.Dock = DockStyle.Bottom;
             barreBas.ImageScalingSize = new Size(20, 20);
-            barreBas.Items.AddRange(new ToolStripItem[] { outil, toolStripSeparator1, grosseurTrait, epaisseur, espace, choixCouleur });
+            barreBas.Items.AddRange(new ToolStripItem[] { Outil_nom, toolStripSeparator1, outil, grosseurTrait, epaisseur, espace, choixCouleur });
             barreBas.Location = new Point(0, 423);
             barreBas.Name = "barreBas";
             barreBas.Size = new Size(800, 27);
@@ -137,8 +138,8 @@
             // outil
             // 
             outil.Name = "outil";
-            outil.Size = new Size(41, 24);
-            outil.Text = "Outil";
+            outil.Size = new Size(45, 24);
+            outil.Text = "Ligne";
             // 
             // toolStripSeparator1
             // 
@@ -193,35 +194,41 @@
             menuClickDroit.ImageScalingSize = new Size(20, 20);
             menuClickDroit.Items.AddRange(new ToolStripItem[] { couleurToolStripMenu, augmenterTraiToolStripMenu, diminuerTraitToolStripMenu, effacerToutToolStripMenu });
             menuClickDroit.Name = "contextMenuStrip1";
-            menuClickDroit.Size = new Size(211, 128);
+            menuClickDroit.Size = new Size(186, 100);
             // 
             // couleurToolStripMenu
             // 
             couleurToolStripMenu.Name = "couleurToolStripMenu";
-            couleurToolStripMenu.Size = new Size(210, 24);
+            couleurToolStripMenu.Size = new Size(185, 24);
             couleurToolStripMenu.Text = "Couleur";
             couleurToolStripMenu.Click += OuvrirPanelCouleur;
             // 
             // augmenterTraiToolStripMenu
             // 
             augmenterTraiToolStripMenu.Name = "augmenterTraiToolStripMenu";
-            augmenterTraiToolStripMenu.Size = new Size(210, 24);
+            augmenterTraiToolStripMenu.Size = new Size(185, 24);
             augmenterTraiToolStripMenu.Text = "Augmenter Trait";
             augmenterTraiToolStripMenu.Click += AugmenterTraiToolStrip;
             // 
             // diminuerTraitToolStripMenu
             // 
             diminuerTraitToolStripMenu.Name = "diminuerTraitToolStripMenu";
-            diminuerTraitToolStripMenu.Size = new Size(210, 24);
+            diminuerTraitToolStripMenu.Size = new Size(185, 24);
             diminuerTraitToolStripMenu.Text = "Diminuer Trait";
             diminuerTraitToolStripMenu.Click += DiminuerTraitToolStrip;
             // 
             // effacerToutToolStripMenu
             // 
             effacerToutToolStripMenu.Name = "effacerToutToolStripMenu";
-            effacerToutToolStripMenu.Size = new Size(210, 24);
+            effacerToutToolStripMenu.Size = new Size(185, 24);
             effacerToutToolStripMenu.Text = "Effacer Tout";
             effacerToutToolStripMenu.Click += EffacerToutToolStrip;
+            // 
+            // Outil_nom
+            // 
+            Outil_nom.Name = "Outil_nom";
+            Outil_nom.Size = new Size(41, 24);
+            Outil_nom.Text = "Outil";
             // 
             // Form1
             // 
@@ -267,5 +274,6 @@
         private ToolStripMenuItem augmenterTraiToolStripMenu;
         private ToolStripMenuItem diminuerTraitToolStripMenu;
         private ToolStripMenuItem effacerToutToolStripMenu;
+        private ToolStripLabel Outil_nom;
     }
 }

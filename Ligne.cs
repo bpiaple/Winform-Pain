@@ -13,12 +13,25 @@ namespace TP1
 
         public override void Dessiner(Graphics tableau)
         {
-            tableau.DrawLine(stylo, x, y, x2, y2);
+            tableau.DrawLine(getStylo(), getX(), getY(), x2, y2);
         }
 
-        public override void Ecrire(StreamWriter ecrivain) 
+        public override void Enregistrer(IFluxEcriture fluxEcriture)
         {
-            ecrivain.WriteLine($"{GetType().Name} {x} {y} {x2} {y2} {stylo.Color.ToArgb()} {stylo.Width}");
+            fluxEcriture.Ecrire(GetType().Name);
+            fluxEcriture.Ecrire(" ");
+            fluxEcriture.Ecrire(getX());
+            fluxEcriture.Ecrire(" ");
+            fluxEcriture.Ecrire(getY());
+            fluxEcriture.Ecrire(" ");
+            fluxEcriture.Ecrire(x2);
+            fluxEcriture.Ecrire(" ");
+            fluxEcriture.Ecrire(y2);
+            fluxEcriture.Ecrire(" ");
+            fluxEcriture.Ecrire(getStylo().Color.ToArgb());
+            fluxEcriture.Ecrire(" ");
+            fluxEcriture.Ecrire(getStylo().Width);
+            fluxEcriture.Ecrire("\n");
         }
     }
 }
